@@ -12,7 +12,7 @@ A Dockerfile to put a [Flask](https://flask.palletsprojects.com) application in 
 
     sudo docker run --rm -p 80:5000 -d flask-app
 
-Adding the _-it_ option I can stop it with _CRTL+C_.
+Adding the _-it_ (and removing the _-d_) option I can stop it with _CRTL+C_.
 
 ## Developement
 
@@ -23,3 +23,8 @@ Adding the _-it_ option I can stop it with _CRTL+C_.
 ### Run
 
     sudo docker run --rm -it -v `pwd`:/app -p 5000:5000 flask-app:debug
+
+## docker-compose
+
+    sudo docker-compose up -d
+    sudo docker-compose down

@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - '80:5000'
+  server-dev:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    ports:
+      - '5000:5000'
+    volumes: 
+      - ./:/app
