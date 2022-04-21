@@ -2,8 +2,9 @@ FROM python
 
 RUN pip3 install gunicorn
 
-RUN useradd -ms /bin/bash bacchilu
-USER bacchilu
+ARG USER_ID
+RUN useradd -ms /bin/bash USER_ID
+USER USER_ID
 
 WORKDIR /app
 
