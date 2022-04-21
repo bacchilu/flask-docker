@@ -1,12 +1,15 @@
 FROM python
 
+RUN pip3 install gunicorn
+
+RUN useradd -ms /bin/bash bacchilu
+USER bacchilu
+
 WORKDIR /app
 
 COPY requirements.txt .
 
 RUN pip3 install -r requirements.txt
-
-RUN pip3 install gunicorn
 
 COPY . .
 

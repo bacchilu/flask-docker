@@ -1,5 +1,8 @@
 FROM python
 
+RUN useradd -ms /bin/bash bacchilu
+USER bacchilu
+
 WORKDIR /app
 
 COPY requirements.txt .
