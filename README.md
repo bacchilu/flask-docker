@@ -31,3 +31,7 @@ Adding the _-it_ (and removing the _-d_) option I can stop it with _CRTL+C_.
 
     sudo docker-compose up -d
     sudo docker-compose down
+
+Also usefull:
+
+    sudo docker logs --follow CONTAINER
