@@ -24,6 +24,11 @@ ENV MODE="${MODE}"
 
 COPY --chown=python:python ./src .
 
+ARG FLASK_DEBUG=0
+
+ENV FLASK_APP=src/server.py
+ENV FLASK_DEBUG=${FLASK_DEBUG}
+
 EXPOSE 8000
 
 RUN pip3 install gunicorn
