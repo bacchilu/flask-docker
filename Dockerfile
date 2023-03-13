@@ -1,19 +1,31 @@
 FROM python
-
-RUN pip3 install gunicorn
-
-ARG USER_ID
-RUN useradd -ms /bin/bash USER_ID
-USER USER_ID
+LABEL maintainer="Luca Bacchi <bacchilu@gmail.com> (https://github.com/bacchilu)"
 
 WORKDIR /app
 
-COPY requirements.txt .
+ARG UID
+ARG GID
+ARG MODE=PROD
+
+RUN groupadd -g "${GID}" python
+RUN useradd --create-home --no-log-init -u "${UID}" -g "${GID}" python
+RUN chown python:python -R /app
+
+USER python
+
+COPY --chown=python:python requirements.txt .
 
 RUN pip3 install -r requirements.txt
 
-COPY . .
+ENV PYTHONPATH="."
+ENV PATH="${PATH}:/home/python/.local/bin"
+ENV USER="python"
+ENV MODE="${MODE}"
 
-EXPOSE 5000
+COPY --chown=python:python ./src .
 
-CMD gunicorn --bind :5000 --workers 1 --threads 8 --timeout 0 server:app
+EXPOSE 8000
+
+RUN pip3 install gunicorn
+
+CMD ["gunicorn", "--bind", ":8000", "--workers", "1", "--threads", "8", "--timeout", "0", "server:app"]

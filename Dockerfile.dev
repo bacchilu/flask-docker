@@ -1,18 +1,30 @@
 FROM python
-
-COPY requirements.txt .
-
-RUN pip3 install -r requirements.txt
-
-ARG USER_ID
-RUN useradd -ms /bin/bash USER_ID
-USER USER_ID
+LABEL maintainer="Luca Bacchi <bacchilu@gmail.com> (https://github.com/bacchilu)"
 
 WORKDIR /app
 
-COPY . .
+ARG UID
+ARG GID
+ARG MODE=PROD
 
-ENV FLASK_APP=server.py
+RUN groupadd -g "${GID}" python
+RUN useradd --create-home --no-log-init -u "${UID}" -g "${GID}" python
+RUN chown python:python -R /app
+
+USER python
+
+COPY --chown=python:python requirements.txt .
+
+RUN pip3 install -r requirements.txt
+
+ENV PYTHONPATH="."
+ENV PATH="${PATH}:/home/python/.local/bin"
+ENV USER="python"
+ENV MODE="${MODE}"
+
+COPY --chown=python:python ./src .
+
+ENV FLASK_APP=src/server.py
 ENV FLASK_DEBUG=1
 
 EXPOSE 5000
