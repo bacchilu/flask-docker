@@ -6,11 +6,11 @@ Dockerization of a _Hello World_ [Flask](https://flask.palletsprojects.com/) App
 
 ### Build Dockerfile
 
-    sudo docker build --build-arg UID=`id -u` --build-arg GID=`id -g` --build-arg FLASK_DEBUG=1 --build-arg MODE=DEV -t bacchilu/flask-app:dev -f Dockerfile.dev .
+    sudo docker build --build-arg UID=`id -u` --build-arg GID=`id -g` --build-arg FLASK_DEBUG=1 --build-arg MODE=DEV -t bacchilu/flask-app:dev -f Dockerfile .
 
 ### Run
 
-    sudo docker run --rm -it -v `pwd`/src:/app -p 5000:5000 bacchilu/flask-app:dev
+    sudo docker run --rm -it -v `pwd`/src:/app -p 5000:8000 bacchilu/flask-app:dev flask run --host=0.0.0.0 --port=8000
 
 ## Production
 

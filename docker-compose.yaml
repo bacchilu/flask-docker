@@ -15,14 +15,15 @@ services:
   flask-dev:
     build:
       context: ./
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       args:
         - "UID=${UID}"
         - "GID=${GID}"
         - "MODE=DEV"
         - "FLASK_DEBUG=1"
     ports:
-      - '5000:5000'
+      - '5000:8000'
     volumes:
       - ./src:/app
+    command: [ "flask", "run", "--host=0.0.0.0", "--port=8000" ]
     env_file: .env
