@@ -26,3 +26,10 @@ Dockerization of a _Hello World_ [Flask](https://flask.palletsprojects.com/) App
 
     sudo docker-compose up -d
     sudo docker-compose down
+
+## Docker Hub
+
+Currently available at [https://hub.docker.com/repository/docker/bacchilu/flask-app](https://hub.docker.com/repository/docker/bacchilu/flask-app).
+
+    sudo docker push bacchilu/flask-app
+    sudo docker run --rm -it -p 80:8000 -d bacchilu/flask-app
