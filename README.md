@@ -6,7 +6,7 @@ Dockerization of a _Hello World_ [Flask](https://flask.palletsprojects.com/) App
 
 ### Build Dockerfile
 
-    sudo docker build --build-arg UID=`id -u` --build-arg GID=`id -g` --build-arg FLASK_DEBUG=1 --build-arg MODE=DEV -t bacchilu/flask-app:dev -f Dockerfile .
+    sudo docker build --build-arg UID=`id -u` --build-arg GID=`id -g` --build-arg FLASK_DEBUG=1 --build-arg MODE=DEV -t bacchilu/flask-app:dev .
 
 ### Run
 
