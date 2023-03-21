@@ -32,5 +32,7 @@ ENV FLASK_DEBUG=${FLASK_DEBUG}
 EXPOSE 8000
 
 RUN pip3 install gunicorn
+COPY --chown=python:python ./config.py .
 
-CMD ["gunicorn", "--bind", ":8000", "--workers", "1", "--threads", "8", "--timeout", "0", "server:app"]
+CMD ["gunicorn", "-c", "python:config", "server:app"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "16", "--threads", "1", "server:app"]
