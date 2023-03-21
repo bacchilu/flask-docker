@@ -33,3 +33,7 @@ Currently available at [https://hub.docker.com/repository/docker/bacchilu/flask-
 
     sudo docker push bacchilu/flask-app
     sudo docker run --rm -it -p 80:8000 -d bacchilu/flask-app
+
+## Useful Resources
+
+[Docker Flask Example](https://github.com/nickjj/docker-flask-example)
